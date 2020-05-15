@@ -1,5 +1,7 @@
 /*
- * Traverses file tree, printing file and folder names. Starts at path specified as command line argument.
+ * Goal - Traverse a directory recursively and delete duplicate files that are next to each other
+ *
+ * Currently - Traverses file tree, printing file and folder names. Starts at path specified as command line argument.
  * 
  * Usage: java checker <path>
  *
