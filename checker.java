@@ -6,6 +6,7 @@
  * Usage: java checker <path>
  *
  */
+package duplicatedelete;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,14 +27,18 @@ public class checker {
 
         System.out.println("getName(0): " + p1.getName(0));
 
+        Path[] filesInDirectory = [];
+
         try {
             Files.walkFileTree(p1, new SimpleFileVisitor<Path>() {
                 @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                    if (!Files.isDirectory(file)) {
+                        System.out.println("Filename: " + file.getFileName());
+                        System.out.println("File size: " + Files.size(file) / 1000.0);
+                    }                    
                     
-                    System.out.println(file.toString());
                     return FileVisitResult.CONTINUE;
-                    
                 }
             });
         }
@@ -41,4 +46,10 @@ public class checker {
             System.err.println(e);
         }
     }
+
+    
 }
+if file is a directory
+print file array
+clear file array
+start 
