@@ -1,3 +1,9 @@
+/*
+ * Creates a FileCheck object out of a Path, then compares the file
+ * referenced by that Path to a file whose path is provided as an
+ * argument to the fileChecker method. Returns 'True' if the two files
+ * are equal, 'False' if not.
+ */
 package duplicatedeleter;
 
 import java.io.InputStream;
@@ -14,27 +20,29 @@ public class FileCheck {
 
     private Path file1;
 
+    // Constructor
     public FileCheck(Path p) {
         this.file1 = p;
     }
 
     public static void main(String[] args) {
-//        Scanner in = new Scanner(System.in);
-//        
-//
-//        System.out.println("Second file to compare: ");
-//        Path file2 = Paths.get(in.nextLine());
-//
-//        boolean isSame = fileChecker(file2);
-//
-//        if(isSame) {
-//            System.out.println(file1 + " and " + file2 + " match.");
-//        }
-//        else {
-//            System.out.println(file1 + " and " + file2 + " do not match.");
-//        }
+        Scanner in = new Scanner(System.in);
+        
+
+        System.out.println("Second file to compare: ");
+        Path file2 = Paths.get(in.nextLine());
+
+        boolean isSame = fileChecker(file2);
+
+        if(isSame) {
+            System.out.println(file1 + " and " + file2 + " match.");
+        }
+        else {
+            System.out.println(file1 + " and " + file2 + " do not match.");
+        }
     }
 
+    // Compares byte by byte with this.Path using BufferedInputStream
     public boolean fileChecker(Path file2) {
         
         if(!Files.exists(file1) || !Files.exists(file2)) {
@@ -68,7 +76,6 @@ public class FileCheck {
             int content2 = 0;
 
             while(((content1 = bis1.read()) != -1) && (content2 = bis2.read()) != -1) {
-//                System.out.println("content1: " + content1 + ", content2: " + content2);
                 if(content1 != content2){
                     return false;
                 }
