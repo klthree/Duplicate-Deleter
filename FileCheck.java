@@ -68,7 +68,8 @@ public class FileCheck {
         FileInputStream in = null;
         InputStream is = null;
 
-        try(BufferedInputStream bis1 = new BufferedInputStream(new FileInputStream(fileFirst)); BufferedInputStream bis2 = new BufferedInputStream(new FileInputStream(fileSecond))) {
+        try(BufferedInputStream bis1 = new BufferedInputStream(new FileInputStream(fileFirst));
+            BufferedInputStream bis2 = new BufferedInputStream(new FileInputStream(fileSecond))) {
             if (Files.size(file1) != Files.size(file2)) {
                 return false;
             }
