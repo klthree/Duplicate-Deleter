@@ -25,6 +25,7 @@ public class FileCheck {
         this.file1 = p;
     }
 
+    // Testing with user input
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         
