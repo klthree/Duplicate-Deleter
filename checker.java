@@ -34,7 +34,9 @@ public class checker {
             Files.walkFileTree(p, new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    paths.add(file);
+                    if(file.getFileName().toString().charAt(0) != '.') {
+                        paths.add(file);                    
+                    }
 
                     return FileVisitResult.CONTINUE;
                 }
@@ -62,16 +64,16 @@ public class checker {
                 
                 }
 
-                @Override
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
-                    paths.clear();
-                    if(dir.getFileName().toString().charAt(0) == '.') {
-                        System.out.println("Skipping " + dir + "...");
-                        return FileVisitResult.SKIP_SUBTREE;
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-
+//                @Override
+//                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+//                    paths.clear();
+//                    if(dir.getFileName().toString().charAt(0) == '.') {
+//                        System.out.println("Skipping " + dir + "...");
+//                        return FileVisitResult.SKIP_SUBTREE;
+//                    }
+//                    return FileVisitResult.CONTINUE;
+//                }
+//
             });
         }
         catch (IOException e) {
