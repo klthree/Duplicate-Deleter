@@ -1,15 +1,41 @@
-package duplicatedelete;
+package duplicatedeleter;
 
+import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.util.Scanner;
 
-public static class FileCheck {
-    public static void main(String[] args) {
-    
+
+public class FileCheck {
+
+    private Path file1;
+
+    public FileCheck(Path p) {
+        this.file1 = p;
     }
 
-    private boolean fileChecker(Path file1, Path file2) {
+    public static void main(String[] args) {
+//        Scanner in = new Scanner(System.in);
+//        
+//
+//        System.out.println("Second file to compare: ");
+//        Path file2 = Paths.get(in.nextLine());
+//
+//        boolean isSame = fileChecker(file2);
+//
+//        if(isSame) {
+//            System.out.println(file1 + " and " + file2 + " match.");
+//        }
+//        else {
+//            System.out.println(file1 + " and " + file2 + " do not match.");
+//        }
+    }
+
+    public boolean fileChecker(Path file2) {
         
         if(!Files.exists(file1) || !Files.exists(file2)) {
             System.err.println("The existence of one or both provided files cannot be confirmed.");
@@ -26,9 +52,6 @@ public static class FileCheck {
             System.exit(2);
         }
         
-        if (Files.size(file1) != Files.size(file2)) {
-            return false;
-        }
 
         String fileFirst = file1.toString();
         String fileSecond = file2.toString();
@@ -36,11 +59,16 @@ public static class FileCheck {
         FileInputStream in = null;
         InputStream is = null;
 
-        try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(fileFirst))) {
+        try(BufferedInputStream bis1 = new BufferedInputStream(new FileInputStream(fileFirst)); BufferedInputStream bis2 = new BufferedInputStream(new FileInputStream(fileSecond))) {
+            if (Files.size(file1) != Files.size(file2)) {
+                return false;
+            }
+
             int content1 = 0;
             int content2 = 0;
 
-            while(content1 = bis.read() != -1 && content2 = bis.read() != -1) {
+            while(((content1 = bis1.read()) != -1) && (content2 = bis2.read()) != -1) {
+//                System.out.println("content1: " + content1 + ", content2: " + content2);
                 if(content1 != content2){
                     return false;
                 }
@@ -50,5 +78,7 @@ public static class FileCheck {
         } catch(IOException e) {
             System.err.println("Error:\n" + e);
         }
+
+        return true;
     }
 }
