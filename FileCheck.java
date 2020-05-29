@@ -4,7 +4,7 @@
  * argument to the fileChecker method. Returns 'True' if the two files
  * are equal, 'False' if not.
  */
-package duplicatedeleter;
+package dupdelete;
 
 import java.io.InputStream;
 import java.io.FileInputStream;
@@ -27,20 +27,20 @@ public class FileCheck {
 
     // Testing with user input
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        
-
-        System.out.println("Second file to compare: ");
-        Path file2 = Paths.get(in.nextLine());
-
-        boolean isSame = fileChecker(file2);
-
-        if(isSame) {
-            System.out.println(file1 + " and " + file2 + " match.");
-        }
-        else {
-            System.out.println(file1 + " and " + file2 + " do not match.");
-        }
+//        Scanner in = new Scanner(System.in);
+//        
+//
+//        System.out.println("Second file to compare: ");
+//        Path file2 = Paths.get(in.nextLine());
+//
+//        boolean isSame = fileChecker(file2);
+//
+//        if(isSame) {
+//            System.out.println(file1 + " and " + file2 + " match.");
+//        }
+//        else {
+//            System.out.println(file1 + " and " + file2 + " do not match.");
+//        }
     }
 
     // Compares byte by byte with this.Path using BufferedInputStream
