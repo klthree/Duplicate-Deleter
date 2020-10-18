@@ -33,21 +33,23 @@ public class Renamer {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attr) throws IOException {
 
-                    String dateRegex = "(\\s{1}[(]\\d{4}_\\d{2}_\\d{2}\\s{1}\\d{2}_\\d{2}_\\d{2}\\s{1}UTC[)]){1}";
+                    String dateRegex = "(\\s{1}[(]{1}\\d{4}_\\d{2}_\\d{2}\\s{1}\\d{2}_\\d{2}_\\d{2}\\s{1}UTC[)]){1}";
+                    
                     String fNameRegex = ".+" + dateRegex + "\\.\\w{4}";
 
                     Path filename = file.getFileName();
+                    System.out.println("Filename: " + filename);
                     String fName = filename.toString();
 
-                    if(fName.matches(fNameRegex)) {
-//                        System.out.println(fName);
+                    if (fName.matches(fNameRegex)) {
+                        System.out.println(fName);
 //                        System.out.println("Filename matches pattern.");
                         
                         String newFileName = fName.replaceAll(dateRegex, "");
                         
 //                        System.out.println("Filename: " + newFileName);
 
-                        if(!Files.exists(file.resolveSibling(newFileName))) {
+                        if (!Files.exists(file.resolveSibling(newFileName))) {
 //                            System.out.println("\nRenaming file...");
                             file = Files.move(file, file.resolveSibling(newFileName));
                         } else {
