@@ -48,11 +48,11 @@ public class Deleter {
                     
                     FileCheck fc;
 
-                    for(int i = 0; i < paths.size() - 1; i++) {
-                        for(int j = i + 1; j < paths.size(); j++) {
+                    for (int i = 0; i < paths.size() - 1; i++) {
+                        for (int j = i + 1; j < paths.size(); j++) {
                             fc = new FileCheck(paths.get(i));
 
-                            if(fc.fileChecker(paths.get(j))) {
+                            if (fc.fileChecker(paths.get(j))) {
                                 System.out.println(paths.get(i).getFileName() + " " + paths.get(j).getFileName());
                                 System.out.println(fc.fileChecker(paths.get(j)));
 
@@ -77,7 +77,7 @@ public class Deleter {
                  * */
                 @Override
                 public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-                    if(dir.getFileName().toString().charAt(0) == '.') {
+                    if (dir.getFileName().toString().charAt(0) == '.') {
                         return FileVisitResult.SKIP_SUBTREE;
                     }
                     return FileVisitResult.CONTINUE;
@@ -98,11 +98,11 @@ public class Deleter {
      * */
     private static void makeWritable(Path p1, Path p2) {
 
-        if(!Files.isWritable(p1)) {
+        if (!Files.isWritable(p1)) {
             File f1 = new File(p1.toString());
             f1.setWritable(true, true);
         }
-        if(!Files.isWritable(p2)) {
+        if (!Files.isWritable(p2)) {
             File f2 = new File(p2.toString());
             f2.setWritable(true, true);
         }
