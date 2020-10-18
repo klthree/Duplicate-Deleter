@@ -35,7 +35,7 @@ public class Renamer {
 
                     String dateRegex = "(\\s{1}[(]{1}\\d{4}_\\d{2}_\\d{2}\\s{1}\\d{2}_\\d{2}_\\d{2}\\s{1}UTC[)]){1}";
                     
-                    String fNameRegex = ".+" + dateRegex + "\\.\\w{4}";
+                    String fNameRegex = ".+" + dateRegex + "\\.\\w{3,4}";
 
                     Path filename = file.getFileName();
                     System.out.println("Filename: " + filename);
